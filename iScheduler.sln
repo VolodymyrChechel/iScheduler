@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iScheduler.WEB", "iScheduler\iScheduler.WEB.csproj", "{71D5AFB1-453C-45AF-B7A1-44841C744471}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iScheduler.DAL", "iScheduler.DAL\iScheduler.DAL.csproj", "{B5A76A39-D5F2-492F-B591-CC511EB4198F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71D5AFB1-453C-45AF-B7A1-44841C744471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D5AFB1-453C-45AF-B7A1-44841C744471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D5AFB1-453C-45AF-B7A1-44841C744471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D5AFB1-453C-45AF-B7A1-44841C744471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A76A39-D5F2-492F-B591-CC511EB4198F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A76A39-D5F2-492F-B591-CC511EB4198F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A76A39-D5F2-492F-B591-CC511EB4198F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A76A39-D5F2-492F-B591-CC511EB4198F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
