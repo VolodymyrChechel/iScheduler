@@ -11,14 +11,29 @@ namespace iScheduler.WEB.Controllers
 {
     public class TestController : Controller
     {
+        SchoolContext db = new SchoolContext();
         // GET: Test
         public ActionResult Index()
         {
-            SchoolContext db = new SchoolContext();
             db.Classes.Add(new Class());
             db.SaveChanges();
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult AddTeacher()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddTeacher(Teacher teacher)
+        {
+
+            return View();
+        }
+
+
     }
 }

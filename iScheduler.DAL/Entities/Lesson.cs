@@ -9,6 +9,7 @@ namespace iScheduler.DAL.Entities
     public class Lesson
     {
         public int Id { get; set; }
-        //public Id { get; set; }
+
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

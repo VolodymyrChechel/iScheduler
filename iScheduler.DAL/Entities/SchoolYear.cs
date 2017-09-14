@@ -10,10 +10,9 @@ namespace iScheduler.DAL.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime Finish { get; set; }
-
+        
         public virtual ICollection<Class> Classes { get; set; }
-        public virtual ICollection<Program> Programs { get; set; }
+        public virtual ICollection<Semester> Semesters { get; set; }
+
     }
 }

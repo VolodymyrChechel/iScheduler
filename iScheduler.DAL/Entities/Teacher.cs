@@ -19,5 +19,6 @@ namespace iScheduler.DAL.Entities
 
         public virtual ICollection<Phone> Phones { get; set; }
         public virtual ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

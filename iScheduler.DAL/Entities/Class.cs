@@ -15,5 +15,6 @@ namespace iScheduler.DAL.Entities
         public virtual Teacher FormTeacher { get; set; }
         public virtual ICollection<Pupil> Pupils { get; set; }
         public virtual ICollection<Program> Programs { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

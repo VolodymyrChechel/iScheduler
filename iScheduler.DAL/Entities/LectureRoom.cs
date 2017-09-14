@@ -11,5 +11,7 @@ namespace iScheduler.DAL.Entities
         public int Id { get; set;}
         public string Number { get; set;}
         public string Comment { get; set; }
+
+        public virtual ICollection<Schedule> ScheduleItems { get; set; }
     }
 }

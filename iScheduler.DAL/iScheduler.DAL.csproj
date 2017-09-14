@@ -54,7 +54,9 @@
     <Compile Include="Entities\Phone.cs" />
     <Compile Include="Entities\Program.cs" />
     <Compile Include="Entities\Pupil.cs" />
+    <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\SchoolYear.cs" />
+    <Compile Include="Entities\Semester.cs" />
     <Compile Include="Entities\Subject.cs" />
     <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

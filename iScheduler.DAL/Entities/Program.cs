@@ -15,7 +15,7 @@ namespace iScheduler.DAL.Entities
         public virtual Class Class { get; set; }
         public int SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
-        public int SchoolYearId { get; set; }
-        public virtual SchoolYear SchollYear { get; set; }
+        public int SemesterId { get; set; }
+        public virtual Semester Semester { get; set; }
     }
 }
