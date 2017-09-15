@@ -9,6 +9,10 @@ namespace iScheduler.DAL.Entities
     public class Lesson
     {
         public int Id { get; set; }
+        public TimeSpan? Time { get; set; }
+        public DayOfWeek DayOfWeek {get; set;}
+        
+        public string Name { get; set; }
 
         public virtual ICollection<Schedule> Schedules { get; set; }
     }

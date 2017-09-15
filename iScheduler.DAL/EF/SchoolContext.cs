@@ -36,17 +36,17 @@ namespace iScheduler.DAL.EF
         protected override void Seed(SchoolContext db)
         {
             // adding rooms
-            db.LectureRooms.Add(new LectureRoom { Number = "21"});
-            db.LectureRooms.Add(new LectureRoom { Number = "24"});
-            db.LectureRooms.Add(new LectureRoom { Number = "25"});
-            db.LectureRooms.Add(new LectureRoom { Number = "26"});
-            db.LectureRooms.Add(new LectureRoom { Number = "27"});
-            db.LectureRooms.Add(new LectureRoom { Number = "28"});
-            db.LectureRooms.Add(new LectureRoom { Number = "33"});
-            db.LectureRooms.Add(new LectureRoom { Number = "35" });
-            db.LectureRooms.Add(new LectureRoom { Number = "36" });
-            db.LectureRooms.Add(new LectureRoom { Number = "37" });
-            db.LectureRooms.Add(new LectureRoom { Number = "38" });
+            var room21 = db.LectureRooms.Add(new LectureRoom { Number = "21"});
+            var room24 = db.LectureRooms.Add(new LectureRoom { Number = "24"});
+            var room25 = db.LectureRooms.Add(new LectureRoom { Number = "25"});
+            var room26 = db.LectureRooms.Add(new LectureRoom { Number = "26"});
+            var room27 = db.LectureRooms.Add(new LectureRoom { Number = "27"});
+            var room28 = db.LectureRooms.Add(new LectureRoom { Number = "28"});
+            var room33 = db.LectureRooms.Add(new LectureRoom { Number = "33"});
+            var room35 = db.LectureRooms.Add(new LectureRoom { Number = "35" });
+            var room36 = db.LectureRooms.Add(new LectureRoom { Number = "36" });
+            var room37 = db.LectureRooms.Add(new LectureRoom { Number = "37" });
+            var room38 = db.LectureRooms.Add(new LectureRoom { Number = "38" });
 
             // adding years
             var sy78 = db.SchoolYears.Add(new SchoolYear { Name="2017/2018" });
@@ -80,24 +80,99 @@ namespace iScheduler.DAL.EF
             var tch8 = db.Teachers.Add(new Teacher { Surname = "Собрат", Name = "Микола", Patronymic = "Федорович" });
 
             // adding subjects
-            var sub1 = db.Subjects.Add(new Subject {Name = "Математика"});
-            var sub2 = db.Subjects.Add(new Subject { Name = "Українська мова" });
-            var sub3 = db.Subjects.Add(new Subject { Name = "Українська література" });
-            var sub4 = db.Subjects.Add(new Subject { Name = "Англыйська мова" });
-            var sub5 = db.Subjects.Add(new Subject { Name = "Світова література" });
-            var sub6 = db.Subjects.Add(new Subject { Name = "Фізика" });
-            var sub7 = db.Subjects.Add(new Subject { Name = "Алгебра" });
-            var sub8 = db.Subjects.Add(new Subject { Name = "Геометрія" });
-            var sub9 = db.Subjects.Add(new Subject { Name = "Географія" });
-            var sub10 = db.Subjects.Add(new Subject { Name = "Хімія" });
-            var sub11 = db.Subjects.Add(new Subject { Name = "Інформатика" });
-            var sub12 = db.Subjects.Add(new Subject { Name = "Біологія" });
-            var sub13 = db.Subjects.Add(new Subject { Name = "Історія України" });
-            var sub14 = db.Subjects.Add(new Subject { Name = "Всесвітня історія" });
+            var subMath = db.Subjects.Add(new Subject {Name = "Математика"});
+            var subUkrLang = db.Subjects.Add(new Subject { Name = "Українська мова" });
+            var subUkrLit = db.Subjects.Add(new Subject { Name = "Українська література" });
+            var subEngLang = db.Subjects.Add(new Subject { Name = "Англыйська мова" });
+            var subForLit = db.Subjects.Add(new Subject { Name = "Світова література" });
+            var subPhys = db.Subjects.Add(new Subject { Name = "Фізика" });
+            var subAlg = db.Subjects.Add(new Subject { Name = "Алгебра" });
+            var subGeom = db.Subjects.Add(new Subject { Name = "Геометрія" });
+            var subGeogr = db.Subjects.Add(new Subject { Name = "Географія" });
+            var subChem = db.Subjects.Add(new Subject { Name = "Хімія" });
+            var subInform = db.Subjects.Add(new Subject { Name = "Інформатика" });
+            var subBiol = db.Subjects.Add(new Subject { Name = "Біологія" });
+            var subUkrHist = db.Subjects.Add(new Subject { Name = "Історія України" });
+            var subWorldHist = db.Subjects.Add(new Subject { Name = "Всесвітня історія" });
+            var subSport = db.Subjects.Add(new Subject { Name = "Фізична культура" });
 
+            // adding lessons
+            var durationOfLesson = new TimeSpan(0, 45, 0);
+            var numberOfWorkingDays = 5;
+            var startOfDay = new TimeSpan(8, 30, 0);
+            var finishOfDay = new TimeSpan(16, 0, 0);
+            var durationOfSmallBreak = new TimeSpan(0, 10, 0);
+            var durationOfLongBreak = new TimeSpan(0, 20, 0);
+            var longBreaksNumber = new List<int> { 3, 4};
+            var startOfWorkingWeek = 1; // for monday
+
+            var LessonsList = new List<Lesson>();
+            // generate timings
+            for (int i = startOfWorkingWeek; i < startOfWorkingWeek + numberOfWorkingDays; i++)
+            {
+                var counter = 1;
+                for (TimeSpan ts = startOfDay; ts < finishOfDay; ts = ts.Add(durationOfLesson))
+                {
+                    LessonsList.Add(
+                        db.Lessons.Add(new Lesson { Time = ts, DayOfWeek = (DayOfWeek)i,
+                        Name = $"{counter} lesson of {(DayOfWeek)i}"}
+                        ));
+                    ++counter;
+
+                    if (longBreaksNumber.Where(lesson => lesson == counter).Any())
+                        ts = ts.Add(durationOfLongBreak);
+                    else
+                        ts = ts.Add(durationOfSmallBreak);
+                }
+            }
+
+#region Programs
+            // adding program
+            db.Programs.Add(new Program() { Class = clss5, Hours = 3, Subject = subMath, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 4, Subject = subUkrLang, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 2, Subject = subUkrLit, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 4, Subject = subEngLang, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 2, Subject = subInform, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 2, Subject = subPhys, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 2, Subject = subSport, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 1, Subject = subUkrHist, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss5, Hours = 1, Subject = subWorldHist, Semester = sms2017frst });
+
+            db.Programs.Add(new Program() { Class = clss6, Hours = 3, Subject = subMath, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 4, Subject = subUkrLang, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subUkrLit, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 4, Subject = subEngLang, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subInform, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subPhys, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subSport, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 1, Subject = subUkrHist, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 1, Subject = subWorldHist, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 1, Subject = subChem, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subGeogr, Semester = sms2017frst });
+
+            db.Programs.Add(new Program() { Class = clss6, Hours = 3, Subject = subMath, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 4, Subject = subUkrLang, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subUkrLit, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 4, Subject = subEngLang, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subInform, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subPhys, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subSport, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 1, Subject = subUkrHist, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 1, Subject = subWorldHist, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 1, Subject = subChem, Semester = sms2017frst });
+            db.Programs.Add(new Program() { Class = clss6, Hours = 2, Subject = subGeogr, Semester = sms2017frst });
+#endregion
+
+            var schedule = db.Schedules.Add(new Schedule
+            {
+                Class = clss5,
+                LectureRoom = room24,
+                Lesson = LessonsList[2],
+                Subject = subGeogr,
+                Teacher = tch1
+            });
 
             base.Seed(db);
-
         }
     }
 }

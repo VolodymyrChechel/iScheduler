@@ -1,8 +1,47 @@
-﻿
+﻿@model IEnumerable<iScheduler.DAL.Entities.Teacher>
+
 @{
     ViewBag.Title = "Index";
+    IEnumerable<iScheduler.DAL.Entities.Program> program = ViewBag.Program;
+    
 }
 
 <h2>Index</h2>
 
-<h3>Black X6, Phantom, White X6 looks like a panda</h3>
+<table>
+    @foreach(var teacher in Model)
+    {
+        <tr>
+            <td> @teacher.Surname </td>
+            <td> @teacher.Name </td>
+            <td> @teacher.Patronymic </td>
+        </tr>
+    }
+</table>
+
+@foreach (var programInClass in program.GroupBy(prop => prop.Class))
+{
+    <table>
+        <tr>
+        <th>
+            @programInClass.First().Class.Name
+        <th/>
+        </tr>
+        @foreach (var pr in programInClass)
+        {
+            <tr>
+                <td>
+                    @pr.Class.Name
+                </td>
+                <td>
+                    @pr.Subject.Name
+                </td>
+                <th>
+                    @pr.Hours
+                 </th>
+            </tr>
+        }
+        </table>
+
+        
+}

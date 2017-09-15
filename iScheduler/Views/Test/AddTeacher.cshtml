@@ -1,0 +1,33 @@
+﻿@model iScheduler.DAL.Entities.Teacher
+@{
+    ViewBag.Title = "AddTeacher";
+}
+
+<h2>AddTeacher</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(teacher => teacher.Name)
+        @Html.EditorFor(teacher => teacher.Name)
+    </div>
+    <div>
+        @Html.LabelFor(teacher => teacher.Surname)
+        @Html.EditorFor(teacher => teacher.Surname)
+    </div>
+    <div>
+        @Html.LabelFor(teacher => teacher.Patronymic)
+        @Html.EditorFor(teacher => teacher.Patronymic)
+    </div>
+    <div>
+        @Html.LabelFor(teacher => teacher.Birthday)
+        @Html.EditorFor(teacher => teacher.Birthday)
+    </div>
+    <div>
+        @Html.LabelFor(teacher => teacher.Email)
+        @Html.EditorFor(teacher => teacher.Email)
+    </div>
+    <div>
+        <input type="Submit" value="Add a new teacher">
+    </div>
+}

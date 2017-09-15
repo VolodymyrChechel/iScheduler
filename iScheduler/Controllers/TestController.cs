@@ -15,10 +15,14 @@ namespace iScheduler.WEB.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            db.Classes.Add(new Class());
-            db.SaveChanges();
+            var teachersList = db.Teachers.ToList();
 
-            return View();
+            ViewBag.Program = db.Programs.
+                Include(prog => prog.Class).
+                Include(prog => prog.Semester).
+                Include(prog => prog.Subject).ToList();
+
+            return View(teachersList);
         }
 
         [HttpGet]
@@ -30,10 +34,13 @@ namespace iScheduler.WEB.Controllers
         [HttpPost]
         public ActionResult AddTeacher(Teacher teacher)
         {
+            if(ModelState.IsValid){
+                db.Teachers.Add(teacher);
+                db.SaveChanges();
+            }
 
             return View();
         }
-
-
+        
     }
 }
