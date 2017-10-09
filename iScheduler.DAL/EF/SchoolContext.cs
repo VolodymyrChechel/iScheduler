@@ -10,6 +10,17 @@ namespace iScheduler.DAL.EF
 {
     public class SchoolContext : DbContext
     {
+        static SchoolContext()
+        {
+            Database.SetInitializer<SchoolContext>(
+                new SchoolDbInitializer());
+        }
+
+        public SchoolContext(string connectionString) : base(connectionString)
+        {
+
+        }
+
         public IDbSet<Class> Classes { get; set; }
         public IDbSet<LectureRoom> LectureRooms { get; set; }
         public IDbSet<Lesson> Lessons { get; set; }
@@ -21,12 +32,6 @@ namespace iScheduler.DAL.EF
         public IDbSet<Semester> Semesters { get; set; }
         public IDbSet<Subject> Subjects{ get; set; }
         public IDbSet<Teacher> Teachers{ get; set; }
-
-        static SchoolContext()
-        {
-            Database.SetInitializer<SchoolContext>(
-                new SchoolDbInitializer());
-        }
     }
 
     // set inital data into database

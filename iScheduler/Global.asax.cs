@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iScheduler.BLL.Util;
+using iScheduler.WEB.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,15 @@ namespace iScheduler
     {
         protected void Application_Start()
         {
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                {
+                    cfg.AddProfile<BllMapperProfile>();
+                    cfg.AddProfile<WebMapperProfile>();
+                }
+            });
+
+            IocConfigurator.ConfigureIocUnityContainer();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

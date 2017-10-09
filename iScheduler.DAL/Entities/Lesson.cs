@@ -14,6 +14,8 @@ namespace iScheduler.DAL.Entities
         
         public string Name { get; set; }
 
+
+        // merge lesson with shedule
         public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

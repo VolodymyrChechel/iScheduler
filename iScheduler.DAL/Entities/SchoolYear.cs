@@ -13,6 +13,5 @@ namespace iScheduler.DAL.Entities
         
         public virtual ICollection<Class> Classes { get; set; }
         public virtual ICollection<Semester> Semesters { get; set; }
-
     }
 }
