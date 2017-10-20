@@ -1,0 +1,12 @@
+﻿
+@model ClassViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    <input value="Create new class" type="submit">
+}

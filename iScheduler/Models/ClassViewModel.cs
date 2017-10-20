@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace iScheduler.WEB.Models
+namespace 
+    iScheduler.WEB.Models
 {
     public class ClassViewModel
     {

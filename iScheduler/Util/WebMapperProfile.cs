@@ -13,6 +13,10 @@ namespace iScheduler.WEB.Util
         public WebMapperProfile()
         {
             CreateMap<ClassDto, ClassViewModel>();
+            CreateMap<ClassViewModel, ClassDto>();
+
+            CreateMap<TeacherDto, TeacherViewModel>();
+            CreateMap<TeacherViewModel, TeacherDto>();
         }
     }
 }

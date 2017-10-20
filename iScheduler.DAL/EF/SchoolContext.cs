@@ -36,7 +36,7 @@ namespace iScheduler.DAL.EF
 
     // set inital data into database
     public class SchoolDbInitializer : 
-        DropCreateDatabaseAlways<SchoolContext>
+        DropCreateDatabaseIfModelChanges<SchoolContext>
     {
         protected override void Seed(SchoolContext db)
         {
