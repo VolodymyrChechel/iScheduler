@@ -10,6 +10,7 @@ namespace iScheduler.DAL.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IRepository<Class> Classes { get; }
+        IRepository<Teacher> Teachers { get; }
         void Save();
     }
 }

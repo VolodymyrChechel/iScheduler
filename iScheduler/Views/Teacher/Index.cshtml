@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TeacherViewModel>
+    
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> List of teachers </h2>
+
+<p class="text-info"> @ViewBag.Message </p>
+
+<div class="container">
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Surname</th>
+                <th>Name</th>
+                <th>Patronymic</th>
+                <th>Email</th>
+                <th>Bitrhday</th>
+                <th>  </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> @item.Id </td>
+                    <td> @item.Surname </td>
+                    <td> @item.Name </td>
+                    <td> @item.Patronymic </td>
+                    <td> @item.Email </td>
+                    <td> @item.Birthday </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-info">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            Edit
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.Id})" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <div>
+        <a href="@Url.Action("Create")" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span>
+            Create new teacher
+        </a>
+    </div>
+</div>

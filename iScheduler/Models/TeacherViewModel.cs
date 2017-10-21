@@ -13,6 +13,8 @@ namespace iScheduler.WEB.Models
         public string Address { get; set; }
         public string Email { get; set; }
 
+        public string Phone { get; set; }
+
         //public virtual ICollection<Phone> Phones { get; set; }
         //public virtual ICollection<Class> Classes { get; set; }
         //public virtual ICollection<Schedule> Schedules { get; set; }

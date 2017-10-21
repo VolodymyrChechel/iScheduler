@@ -27,6 +27,7 @@ namespace iScheduler.WEB.Util
         {
             container.AddExtension(new UnityExtension("SchoolConnection"));
             container.RegisterType<IClassService, ClassService>();
+            container.RegisterType<ITeacherService, TeacherService>();
         }
        
     }

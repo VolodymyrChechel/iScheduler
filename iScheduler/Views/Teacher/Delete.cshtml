@@ -1,0 +1,30 @@
+﻿@model TeacherViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>
+    Teacher deleting
+</h2>
+
+<div>
+    <h3>
+        Are you sure that you want to delete this teacher?
+    </h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <p>
+            @Html.DisplayFor(model => model.Id) - @Html.DisplayFor(model => model.Surname)
+            @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.Patronymic)
+        </p>
+
+        <input type="submit" value="Confirm deleting" class="btn btn-danger" />
+        @Html.ActionLink("Return to teachers' list", "Index")
+    }
+
+</div>
+
+

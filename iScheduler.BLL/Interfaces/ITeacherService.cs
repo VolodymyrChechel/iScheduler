@@ -3,12 +3,12 @@ using iScheduler.BLL.DTO;
 
 namespace iScheduler.BLL.Interfaces
 {
-    public interface ITeacher
+    public interface ITeacherService
     {
         TeacherDto GetTeacherById(int? teacherId);
         
         IEnumerable<TeacherDto> GetTeachersByYear(int? yearId);
-        IEnumerable<TeacherDto> GetAllTeacher();
+        IEnumerable<TeacherDto> GetAllTeachers();
 
         void CreateTeacher(TeacherDto teacherDto);
         void DeleteTeacher(int? classId);

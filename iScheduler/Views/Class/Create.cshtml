@@ -1,12 +1,22 @@
-﻿
-@model ClassViewModel
+﻿@model ClassViewModel
 
-@using (Html.BeginForm())
+@{
+    ViewBag.Title = "Create class";
+}
+<h2> Class creating </h2>
+
+@using (Html.BeginForm("Create", "Class", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
 
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2" })
 
-    <input value="Create new class" type="submit">
+        <div class="col-sm-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Create new class">
+
 }
