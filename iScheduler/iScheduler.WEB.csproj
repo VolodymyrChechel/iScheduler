@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClassController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">

@@ -15,6 +15,7 @@ namespace iScheduler.DAL.Repositories
         private SchoolContext db;
         private GenericRepository<SchoolContext, Class> classRepository;
         private GenericRepository<SchoolContext, Teacher> teacherRepository;
+        private GenericRepository<SchoolContext, Subject> subjectRepository;
 
         public EfUnitOfWork(string connectionString)
         {
@@ -38,6 +39,16 @@ namespace iScheduler.DAL.Repositories
                 if (teacherRepository == null)
                     teacherRepository = new GenericRepository<SchoolContext, Teacher>(db);
                 return teacherRepository;
+            }
+        }
+
+        public IRepository<Subject> Subjects
+        {
+            get
+            {
+                if (subjectRepository == null)
+                    subjectRepository = new GenericRepository<SchoolContext, Subject>(db);
+                return subjectRepository;
             }
         }
 
