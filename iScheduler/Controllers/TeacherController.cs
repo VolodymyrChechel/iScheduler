@@ -66,7 +66,7 @@ namespace iScheduler.WEB.Controllers
             if (ModelState.IsValid)
             {
                 var teacherDto = Mapper.Map<TeacherViewModel, TeacherDto>(model);
-                teacherService.CreateTeacher(teacherDto);
+                teacherService.UpdateTeacher(teacherDto);
 
                 TempData["Message"] = $"Teacher {model.Surname} {model.Name}" +
                                       $" {model.Patronymic} was succesfully edited";

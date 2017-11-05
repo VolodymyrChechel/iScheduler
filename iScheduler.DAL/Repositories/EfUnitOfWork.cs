@@ -13,9 +13,11 @@ namespace iScheduler.DAL.Repositories
     {
         bool disposed;
         private SchoolContext db;
+
         private GenericRepository<SchoolContext, Class> classRepository;
         private GenericRepository<SchoolContext, Teacher> teacherRepository;
         private GenericRepository<SchoolContext, Subject> subjectRepository;
+        private GenericRepository<SchoolContext, Program> programRepository;
 
         public EfUnitOfWork(string connectionString)
         {
@@ -52,6 +54,17 @@ namespace iScheduler.DAL.Repositories
             }
         }
 
+        public IRepository<Program> Programs
+        {
+            get
+            {
+                if(programRepository == null)
+                    programRepository = new GenericRepository<SchoolContext, Program>(db);
+                return programRepository;
+            }
+        }
+
+       
         public void Dispose()
         {
             Dispose(true);

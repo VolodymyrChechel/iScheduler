@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using iScheduler.BLL.DTO;
 using iScheduler.BLL.Interfaces;
+using iScheduler.DAL.Entities;
 using iScheduler.WEB.Filters;
 using iScheduler.WEB.Models;
 
@@ -20,9 +21,9 @@ namespace iScheduler.WEB.Controllers
 
         public ActionResult Index()
         {
-            var teachersDtoList = teacherService.GetAllTeachers();
-            var teachersList = Mapper.Map<IEnumerable<TeacherDto>,
-                IEnumerable<TeacherViewModel>>(teachersDtoList);
+            var subjectsDtoList = subjectService.GetAllSubjects();
+            var teachersList = Mapper.Map<IEnumerable<SubjectDto>,
+                IEnumerable<SubjectViewModel>>(subjectsDtoList);
 
             ViewBag.Message = TempData["Message"];
             return View(teachersList);
@@ -35,15 +36,15 @@ namespace iScheduler.WEB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(TeacherViewModel model)
+        public ActionResult Create(SubjectViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var teacherDto = Mapper.Map<TeacherViewModel, TeacherDto>(model);
-                teacherService.CreateTeacher(teacherDto);
+                var subjectDto = Mapper.Map<SubjectViewModel, SubjectDto>(model);
+                subjectService.CreateSubject(subjectDto);
 
-                TempData["Message"] = $"Teacher {model.Surname} {model.Name}" +
-                    $" {model.Patronymic} was succesfully created";
+                TempData["Message"] = $"Subject {model.Name}" +
+                    " was succesfully created";
 
                 return RedirectToAction("Index");
             }
@@ -54,22 +55,23 @@ namespace iScheduler.WEB.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            var teacherDto = teacherService.GetTeacherById(id);
-            var teacher = Mapper.Map<TeacherDto, TeacherViewModel>(teacherDto);
+            var subjectDto = subjectService.GetSubjectById(id);
+            var subject = Mapper.Map<SubjectDto, SubjectViewModel>(subjectDto);
 
-            return View(teacher);
+            return View(subject);
         }
 
         [HttpPost]
-        public ActionResult Edit(TeacherViewModel model)
+        public ActionResult Edit(SubjectViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var teacherDto = Mapper.Map<TeacherViewModel, TeacherDto>(model);
-                teacherService.CreateTeacher(teacherDto);
+                var subjectDto = Mapper.Map<SubjectViewModel, SubjectDto>(model);
 
-                TempData["Message"] = $"Teacher {model.Surname} {model.Name}" +
-                                      $" {model.Patronymic} was succesfully edited";
+                subjectService.UpdateSuject(subjectDto);
+
+                TempData["Message"] = $"Subject {model.Name} " +
+                                      "was succesfully edited";
 
                 return RedirectToAction("Index");
             }
@@ -80,19 +82,19 @@ namespace iScheduler.WEB.Controllers
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            var teacherDto = teacherService.GetTeacherById(id);
-            var teacher = Mapper.Map<TeacherDto, TeacherViewModel>(teacherDto);
+            var subjectDto = subjectService.GetSubjectById(id);
+            var subject = Mapper.Map<SubjectDto, SubjectViewModel>(subjectDto);
 
-            return View(teacher);
+            return View(subject);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            teacherService.DeleteTeacher(id);
+            subjectService.DeleteSubject(id);
 
-            TempData["Message"] = $"Teacher {id.Value} was succesfully deleted";
+            TempData["Message"] = $"Subject {id.Value} was succesfully deleted";
 
             return RedirectToAction("Index");
         }

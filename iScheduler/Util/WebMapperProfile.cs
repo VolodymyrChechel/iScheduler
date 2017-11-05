@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using iScheduler.DAL.Entities;
 
 namespace iScheduler.WEB.Util
 {
@@ -17,6 +18,9 @@ namespace iScheduler.WEB.Util
 
             CreateMap<TeacherDto, TeacherViewModel>();
             CreateMap<TeacherViewModel, TeacherDto>();
+
+            CreateMap<SubjectDto, SubjectViewModel>();
+            CreateMap<SubjectViewModel, SubjectDto>();
         }
     }
 }

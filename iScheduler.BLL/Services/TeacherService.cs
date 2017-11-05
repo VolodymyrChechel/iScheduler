@@ -61,7 +61,7 @@ namespace iScheduler.BLL.Services
             if (teacherId == null)
                 throw new ValidationException("Teacher id was not passed", "");
 
-            var teacher = db.Classes.Get(teacherId.Value);
+            var teacher = db.Teachers.Get(teacherId.Value);
 
             if (teacher == null)
                 throw new ValidationException("Teacher was not found", "");
@@ -72,7 +72,13 @@ namespace iScheduler.BLL.Services
 
         public void UpdateTeacher(TeacherDto teacherDto)
         {
-            throw new System.NotImplementedException();
+            if (teacherDto == null)
+                throw new ValidationException("Object of class is null", "");
+
+            var teacherObj = AutoMapper.Mapper.Map<TeacherDto, Teacher>(teacherDto);
+
+            db.Teachers.Update(teacherObj);
+            db.Save();
         }
     }
 }
