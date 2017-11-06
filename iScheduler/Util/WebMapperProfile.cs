@@ -21,6 +21,9 @@ namespace iScheduler.WEB.Util
 
             CreateMap<SubjectDto, SubjectViewModel>();
             CreateMap<SubjectViewModel, SubjectDto>();
+
+            CreateMap<ProgramDto, ProgramViewModel>();
+            CreateMap<ProgramViewModel, ProgramDto>();
         }
     }
 }

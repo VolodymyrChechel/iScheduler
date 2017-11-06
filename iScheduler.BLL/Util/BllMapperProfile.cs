@@ -16,6 +16,9 @@ namespace iScheduler.BLL.Util
 
             CreateMap<Subject, SubjectDto>();
             CreateMap<SubjectDto, Subject>();
+
+            CreateMap<Program, ProgramDto>();
+            CreateMap<ProgramDto, Program>();
         }
     }
 }
