@@ -30,6 +30,7 @@ namespace iScheduler.WEB.Util
             container.RegisterType<ITeacherService, TeacherService>();
             container.RegisterType<ISubjectService, SubjectService>();
             container.RegisterType<IProgramService, ProgramService>();
+            container.RegisterType<IBaseService, BaseService>();
         }
        
     }

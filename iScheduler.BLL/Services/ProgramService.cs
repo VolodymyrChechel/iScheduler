@@ -8,28 +8,27 @@ using iScheduler.DAL.Interfaces;
 
 namespace iScheduler.BLL.Services
 {
-    public class ProgramService : IProgramService
+    public class ProgramService : BaseService, IProgramService
     {
-        private IUnitOfWork db { get; set; }
-
-        public ProgramService(IUnitOfWork uow)
-        {
-            db = uow;
-        }
-
-        public IEnumerable<ProgramDto> GetAllPrograms()
-        {
-            var programsList = db.Programs.GetAll();
-
-            var programsListDto = Mapper.Map<IEnumerable<Program>,
-                IEnumerable<ProgramDto>>(programsList);
-
-            return programsListDto;
-        }
+        public ProgramService(IUnitOfWork uow) : base(uow) { }
 
         public IEnumerable<ProgramDto> GetProgramsByClass(int? classId)
         {
             throw new System.NotImplementedException();
+        }
+
+        public ProgramDto GetProgramById(int? programId)
+        {
+            if (programId == null)
+                throw new ValidationException("Program id is null", "");
+
+            var programObj = db.Programs.Get(programId.Value);
+
+            if (programObj == null)
+                throw new ValidationException("Program was not found", "");
+
+            var programDto = AutoMapper.Mapper.Map<Program, ProgramDto>(programObj);
+            return programDto;
         }
 
 
@@ -39,7 +38,7 @@ namespace iScheduler.BLL.Services
                 throw new ValidationException("Object of program is null", "");
 
             var programObj = AutoMapper.Mapper.Map<ProgramDto, Program>(programDto);
-
+            
             db.Programs.Create(programObj);
             db.Save();
         }
@@ -67,15 +66,6 @@ namespace iScheduler.BLL.Services
 
             db.Programs.Update(programObj);
             db.Save();
-        }
-
-        public IEnumerable<ClassDto> GetAllClasses()
-        {
-            var classesList = db.Classes.GetAll();
-
-            var classesDtoList = Mapper.Map<IEnumerable<Class>, IEnumerable<ClassDto>>(classesList);
-
-            return classesDtoList;
         }
     }
 }

@@ -8,14 +8,9 @@ using iScheduler.DAL.Interfaces;
 
 namespace iScheduler.BLL.Services
 {
-    public class SubjectService : ISubjectService
+    public class SubjectService : BaseService, ISubjectService
     {
-        private IUnitOfWork db;
-
-        public SubjectService(IUnitOfWork uow)
-        {
-            db = uow;
-        }
+        public SubjectService(IUnitOfWork uow) : base(uow) { }
 
         public SubjectDto GetSubjectById(int? subjectId)
         {
@@ -34,16 +29,6 @@ namespace iScheduler.BLL.Services
         public SubjectDto GetSubjectByName(string subjectName)
         {
             throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<SubjectDto> GetAllSubjects()
-        {
-            var subjectsList = db.Subjects.GetAll();
-
-            var subjectsDtoList = Mapper.Map<IEnumerable<Subject>,
-                IEnumerable<SubjectDto>>(subjectsList);
-
-            return subjectsDtoList;
         }
 
         public void CreateSubject(SubjectDto subjectDto)

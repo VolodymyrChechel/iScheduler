@@ -8,14 +8,9 @@ using iScheduler.DAL.Interfaces;
 
 namespace iScheduler.BLL.Services
 {
-    public class TeacherService : ITeacherService
+    public class TeacherService : BaseService, ITeacherService
     {
-        private IUnitOfWork db { get; set; }
-
-        public TeacherService(IUnitOfWork uow)
-        {
-            db = uow;
-        }
+        public TeacherService(IUnitOfWork uow) : base(uow) { }
 
         public TeacherDto GetTeacherById(int? teacherId)
         {
@@ -34,15 +29,6 @@ namespace iScheduler.BLL.Services
         public IEnumerable<TeacherDto> GetTeachersByYear(int? yearId)
         {
             throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<TeacherDto> GetAllTeachers()
-        {
-            var teachersList = db.Teachers.GetAll();
-            var teachersDtoList = Mapper.Map<IEnumerable<Teacher>,
-                IEnumerable<TeacherDto>>(teachersList);
-
-            return teachersDtoList;
         }
 
         public void CreateTeacher(TeacherDto teacherDto)

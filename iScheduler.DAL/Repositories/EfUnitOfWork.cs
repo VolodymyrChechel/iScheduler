@@ -18,6 +18,8 @@ namespace iScheduler.DAL.Repositories
         private GenericRepository<SchoolContext, Teacher> teacherRepository;
         private GenericRepository<SchoolContext, Subject> subjectRepository;
         private GenericRepository<SchoolContext, Program> programRepository;
+        private GenericRepository<SchoolContext, Semester> semesterRepository;
+        private GenericRepository<SchoolContext, Schedule> scheduleRepository;
 
         public EfUnitOfWork(string connectionString)
         {
@@ -64,7 +66,26 @@ namespace iScheduler.DAL.Repositories
             }
         }
 
-       
+        public IRepository<Semester> Semesters
+        {
+            get
+            {
+                if (semesterRepository == null)
+                    semesterRepository = new GenericRepository<SchoolContext, Semester>(db);
+                return semesterRepository;
+            }
+        }
+
+        public IRepository<Schedule> Schedules
+        {
+            get
+            {
+                if (scheduleRepository == null)
+                    scheduleRepository = new GenericRepository<SchoolContext, Schedule>(db);
+                return scheduleRepository;
+            }
+        }
+
         public void Dispose()
         {
             Dispose(true);

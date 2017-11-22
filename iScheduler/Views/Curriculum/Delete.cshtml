@@ -1,0 +1,29 @@
+﻿@model ProgramViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>
+    Program deleting
+</h2>
+
+<div>
+    <h3>
+        Are you sure that you want to delete this program?
+    </h3>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <p>
+            @Html.DisplayFor(model => model.ClassName) - 
+            @Html.DisplayFor(model => model.SubjectName) - 
+            @Html.DisplayFor(model => model.Hours)
+        </p>
+
+        <input type="submit" value="Confirm deleting" class="btn btn-danger" />
+        @Html.ActionLink("Return to programs' list", "Index")
+    }
+
+</div>

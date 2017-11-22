@@ -57,10 +57,14 @@
   <ItemGroup>
     <Compile Include="DTO\ClassDto.cs" />
     <Compile Include="DTO\ProgramDto.cs" />
+    <Compile Include="DTO\ScheduleDto.cs" />
+    <Compile Include="DTO\SemesterDto.cs" />
     <Compile Include="DTO\SubjectDto.cs" />
     <Compile Include="DTO\TeacherDto.cs" />
     <Compile Include="Infrastructure\UnityExtension.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
+    <Compile Include="Interfaces\IBaseService.cs" />
+    <Compile Include="Interfaces\IScheduleService.cs" />
     <Compile Include="Interfaces\IProgramService.cs" />
     <Compile Include="Interfaces\ISubjectService.cs" />
     <Compile Include="Interfaces\IClassService.cs" />

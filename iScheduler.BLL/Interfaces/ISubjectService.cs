@@ -8,15 +8,13 @@ using iScheduler.DAL.Entities;
 
 namespace iScheduler.BLL.Interfaces
 {
-    public interface ISubjectService
+    public interface ISubjectService : IBaseService
     {
         SubjectDto GetSubjectById(int? subjectId);
         SubjectDto GetSubjectByName(string subjectName);
-        IEnumerable<SubjectDto> GetAllSubjects();
 
         void CreateSubject(SubjectDto subjectDto);
         void DeleteSubject(int? subjectId);
         void UpdateSuject(SubjectDto subjectDto);
-
     }
 }

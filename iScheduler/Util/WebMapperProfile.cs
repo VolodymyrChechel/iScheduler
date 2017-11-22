@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using iScheduler.DAL.Entities;
 
 namespace iScheduler.WEB.Util
 {

@@ -1,7 +1,7 @@
 ﻿@model ProgramViewModel
     
 @{
-    ViewBag.Title = "Create program";
+    ViewBag.Title = "Edit program";
 }
 <h2> @ViewBag.Title </h2>
 
@@ -12,9 +12,10 @@
 </p>
 }
 
-@using (Html.BeginForm("Create", "Curriculum", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Curriculum", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
 
     <div class="form-group">
         @Html.LabelFor(model => model.ClassId, new { @class = "control-label col-sm-2" })
@@ -50,7 +51,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" class="btn btn-success" value="Create new program">
+            <input type="submit" class="btn btn-success" value="Save changes">
         </div>
     </div>
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace iScheduler.BLL.Interfaces
 {
-    public interface IClassService : IBaseService
+    public interface IScheduleService : IBaseService
     {
         ClassDto GetClassById(int? classId);
         ClassDto GetClassByName(string className);

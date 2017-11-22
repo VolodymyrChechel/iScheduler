@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using AutoMapper;
 using iScheduler.BLL.DTO;
 using iScheduler.BLL.Interfaces;
-using iScheduler.DAL.Entities;
 using iScheduler.WEB.Filters;
 using iScheduler.WEB.Models;
 

@@ -14,14 +14,9 @@ using AutoMapper;
 
 namespace iScheduler.BLL.Services
 {
-    public class ClassService : IClassService
+    public class ClassService : BaseService, IClassService
     {
-        private IUnitOfWork db { get; set; }
-
-        public ClassService(IUnitOfWork uow)
-        {
-            db = uow;
-        }
+        public ClassService(IUnitOfWork uow) : base(uow) { }
 
         public void CreateClass(ClassDto classDto)
         {
@@ -46,15 +41,6 @@ namespace iScheduler.BLL.Services
 
             db.Classes.Delete(classObj.Id);
             db.Save();
-        }
-
-        public IEnumerable<ClassDto> GetAllClasses()
-        {
-            var classesList = db.Classes.GetAll();
-
-            var classesDtoList = Mapper.Map<IEnumerable<Class>, IEnumerable<ClassDto>>(classesList);
-
-            return classesDtoList;
         }
 
         public ClassDto GetClassById(int? classId)

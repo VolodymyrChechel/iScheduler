@@ -13,6 +13,8 @@ namespace iScheduler.DAL.Interfaces
         IRepository<Teacher> Teachers { get; }
         IRepository<Subject> Subjects { get; }
         IRepository<Program> Programs { get; }
+        IRepository<Semester> Semesters { get; }
+        IRepository<Schedule> Schedules { get; }
 
         void Save();
     }
